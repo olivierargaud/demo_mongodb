@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Album;
+import com.example.demo.entity.Artist;
 import com.example.demo.repository.AlbumRepository;
-import com.example.demo.repository.CommandeRepository;
-import com.example.demo.entity.Commande;
+import com.example.demo.repository.ArtistRepository;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -16,15 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @Controller
 public class MainController {
 
-    @Autowired
-    private CommandeRepository commandeRepository;
 
     @Autowired
     private AlbumRepository albumRepository;
+
+    @Autowired
+    private ArtistRepository artistRepository;
+
 
     @RequestMapping(
             value =  "/"
@@ -34,39 +38,6 @@ public class MainController {
 
         return "index";
     }
-
-    @RequestMapping(
-            value =  "/test",
-            method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
-    )
-    public String save(Model model, Commande commande) {
-
-
-        commandeRepository.insert(commande);
-
-        return "index";
-    }
-
-
-//    @RequestMapping(
-//            value =  "/insertArtist",
-//            method = RequestMethod.POST,
-//            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
-//    )
-//    public String saveArtist(Model model) {
-//
-//        Album album = new Album();
-//        album.setNom("chanson de toto");
-//        album.setArtist("toto");
-//        album.setAnneeDeSortie(2020);
-//        album.setPrix(21.5f);
-//
-//        albumRepository.insert(album);
-//
-//
-//        return "index";
-//    }
 
 
     @RequestMapping(
@@ -110,25 +81,38 @@ public class MainController {
         return "listeAlbum";
     }
 
+
     @RequestMapping(
-            value =  "/listeArtist",
+            value =  "/listeAlbumParAnnee",
             method = RequestMethod.POST
     )
-    public String pageListeArtist(Model model) {
+    public String pageListeAlbumParAnnee(Model model) {
+
+        ArrayList<Album> albumArrayList = new ArrayList<>();
+        albumArrayList = (ArrayList<Album>) albumRepository.findAllByOrderByAnneeDeSortieAsc();
 
 
-        return "listeArtist";
+        model.addAttribute("albumArrayList",albumArrayList);
+
+        return "listeAlbumParAnnee";
     }
 
     @RequestMapping(
-            value =  "/listeClient",
+            value =  "/listeArtistParNom",
             method = RequestMethod.POST
     )
-    public String pageListeClient(Model model) {
+    public String pageListeArtistParNom(Model model) {
+
+        ArrayList<Artist> artistArrayList = new ArrayList<>();
+        artistArrayList = (ArrayList<Artist>) artistRepository.findAllByOrderByNomAsc();
 
 
-        return "listeClient";
+        model.addAttribute("artistArrayList",artistArrayList);
+
+        return "listeArtistParNom";
     }
+
+
 
 
     @RequestMapping(value = "/image/{album_id}", produces = MediaType.IMAGE_PNG_VALUE)

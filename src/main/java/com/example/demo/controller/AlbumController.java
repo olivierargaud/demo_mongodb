@@ -88,9 +88,7 @@ public class AlbumController {
         orders.add(order);
         orders.add(order2);
 
-
         PageRequest pageRequest = PageRequest.of(page,size, Sort.by(orders));
-//        PageRequest pageRequest = PageRequest.of(page,size, Sort.Direction.fromString(sortDirection),sortProperty);
 
         Page<Album> albumPage = albumRepository.findAll(pageRequest);
 
@@ -110,6 +108,8 @@ public class AlbumController {
         headers.setContentType(MediaType.IMAGE_PNG);
         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
     }
+
+
 
     @RequestMapping(value = "/{album_id}")
     public String detailAlbum(

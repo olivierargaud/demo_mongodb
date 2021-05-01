@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+
+    <body>
+
+        <h1>Liste des artistes</h1>
+
+        <table class="table table-hover table-striped">
+
+            <tbody>
+            <tr th:each="artist : ${artistArrayList}">
+
+                <td>
+                    <div> Nom de l'artiste : [[${artist.nom}]] </div>
+                    <div> Libellé de la nationalité : [[${artist.pays}]] </div>
+                    <div> Libellé du genre musical : [[${artist.genre}]] </div>
+                </td>
+                <br>
+
+            </tr>
+            </tbody>
+
+        </table>
+
+    </body>
+</html>

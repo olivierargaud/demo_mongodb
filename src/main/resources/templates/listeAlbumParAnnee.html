@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+
+    <body>
+
+        <h1>Liste des albums</h1>
+
+        <table class="table table-hover table-striped">
+
+            <tbody>
+                <tr th:each="album : ${albumArrayList}">
+
+                    <td>
+                        <div> Nom de l'artiste : [[${album.artist}]] </div>
+                        <div> Nom de l'album : [[${album.nom}]] </div>
+                        <div> Année de sortie : [[${album.anneeDeSortie}]] </div>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+    </body>
+</html>
