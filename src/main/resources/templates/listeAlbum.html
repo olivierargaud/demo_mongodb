@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+
+    <body>
+
+        <h1>Liste des albums</h1>
+
+        <table class="table table-hover table-striped">
+
+            <tbody>
+            <tr th:each="album : ${listeAlbum}">
+
+                <td>
+                    <div> Nom : [[${album.nom}]] </div>
+                    <div> Année de sortie : [[${album.anneeDeSortie}]] </div>
+                    <div> Nom de l'artiste : [[${album.artist}]] </div>
+                    <div> Prix : [[${album.prix}]] </div>
+                    <img th:if="${album.image}" th:src="@{/albums/image/{toto}(toto=${album.id})}" height="100" width="100" />
+                </td>
+                <br>
+
+                <td>
+                    <a th:href="'/albums/'+${album.id}" class="btn btn-primary">Détail</a>
+                </td>
+                <td>
+                    <form th:action="'/albums/'+${album.id}" th:method="delete">
+                        <button type="submit" class="btn btn-danger"  >Supprimer</button>
+                    </form>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+
+        <div th:if="${listeAlbum.getTotalElements()}!=0">
+
+                    <a  th:if="${!listeAlbum.isFirst()}" th:href="
+                                 @{/albums/list
+                                    (
+                                        page=${listeAlbum.previousOrFirstPageable().getPageNumber()},
+                                        size=${listeAlbum.getSize()},
+                                        sortDirection=${listeAlbum.getSort().stream().iterator().next().getDirection()},
+                                        sortProperty=${listeAlbum.getSort().stream().iterator().next().getProperty()}
+                                    )
+                                }
+                    ">
+                        « page précédente
+                    </a>
+
+                    <a th:if="${!listeAlbum.isLast()}" th:href="
+                                 @{/albums/list
+                                    (
+                                        page=${listeAlbum.nextOrLastPageable().getPageNumber()},
+                                        size=${listeAlbum.getSize()},
+                                        sortDirection=${listeAlbum.getSort().stream().iterator().next().getDirection()},
+                                        sortProperty=${listeAlbum.getSort().stream().iterator().next().getProperty()}
+
+                                    )
+                                }
+                    ">
+                       page suivante »
+                    </a>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>

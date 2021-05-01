@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>test MONGODB</h1>
+
+
+
+        <form th:if="!${album}" method="POST" action="/albums/add" enctype="multipart/form-data">
+            Nom de l'album:<input type="text" name="nomAlbum" />
+            <br>
+            <br>
+            Année de sortie:<input type="number" name="annee" />
+            <br>
+            <br>
+            Nom de l'artist:<input type="text" name="nomArtist" />
+            <br>
+            <br>
+            Prix:<input type="number" name="prix" step="0.01" />
+            <br>
+            <br>
+            Pochette de l'album:<input type="file" name="image" accept="image/*" />
+            <br>
+            <br>
+            <input type="submit" value="VALIDER" />
+        </form>
+
+        <form th:if="${album}" method="POST" action="/albums/add" enctype="multipart/form-data">
+            Nom de l'album:<input type="text" name="nomAlbum" th:value="${album.nom}" />
+            <br>
+            <br>
+            Année de sortie:<input type="number" name="annee" th:value="${album.anneeDeSortie}"/>
+            <br>
+            <br>
+            Nom de l'artist:<input type="text" name="nomArtist" th:value="${album.artist}"/>
+            <br>
+            <br>
+            Prix:<input type="number" name="prix" step="0.01" th:value="${album.prix}"/>
+            <br>
+            <br>
+            Pochette de l'album:<input th:if="!${album.image}" type="file" name="image" accept="image/*" />
+            <br>
+            <br>
+            <input hidden type="text" name="id" th:value="${album.id}"/>
+
+            <input type="submit" value="VALIDER" />
+        </form>
+
+
+    </body>
+</html>

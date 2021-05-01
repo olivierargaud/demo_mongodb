@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>test MONGODB</h1>
+
+
+        <form action="/test" method="post">
+
+            <h3>commande palette</h3>
+            <input type="text" name="resistance" placeholder="resistance">
+            <input type="text" name="traitement" placeholder="traitement">
+
+            <h3>entreprise</h3>
+            <input type="text" name="nomEntreprise" placeholder="nom entreprise">
+
+            <h3>contact</h3>
+            <input type="text" name="prenomContact" placeholder="prenom">
+            <input type="text" name="nomContact" placeholder="nom">
+            <input type="text" name="telContact" placeholder="tel">
+            <input type="text" name="mailContact" placeholder="mail">
+            <br>
+<!--            <input type="text" name="prenom" placeholder="prenom">-->
+<!--            <input type="text" name="nom" placeholder="nom">-->
+<!--            <input type="text" name="tel" placeholder="tel">-->
+<!--            <input type="text" name="mail" placeholder="mail">-->
+
+            <h3>fabriquant</h3>
+            <input type="text" name="idFabriquant" placeholder="id">
+            <input type="text" name="prenomFabriquant" placeholder="prenom">
+            <input type="text" name="nomFabriquant" placeholder="nom">
+            <br>
+<!--            <input type="text" name="id" placeholder="id">-->
+<!--            <input type="text" name="prenom" placeholder="prenom">-->
+<!--            <input type="text" name="nom" placeholder="nom">-->
+
+            <button type="submit">VALIDER</button>
+
+        </form>
+
+
+
+        <form method="POST" action="/photos/add" enctype="multipart/form-data">
+            nomAlbum:<input type="text" name="nomAlbum" />
+            annee:<input type="number" name="annee" />
+            nomArtist:<input type="text" name="nomArtist" />
+            prix:<input type="number" name="prix" />
+            Image:<input type="file" name="image" accept="image/*" />
+            <input type="submit" value="Upload" />
+        </form>
+
+
+        <form action="/insertAlbum" method="post">
+            <button type="submit">ajout album</button>
+        </form>
+
+
+        <form action="/insertArtist" method="post">
+            <button type="submit">ajout album</button>
+        </form>
+
+    </body>
+</html>

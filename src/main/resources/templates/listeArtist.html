@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+  </head>
+
+  <body>
+
+    <h1>Liste des artistes</h1>
+
+
+    <table class="table table-hover table-striped">
+
+      <tbody>
+        <tr th:each="artist : ${listeArtist}">
+
+          <td>
+            <div> Nom : [[${artist.nom}]] </div>
+            <div> Type : [[${artist.type}]] </div>
+            <div> Pays : [[${artist.pays}]] </div>
+            <div> Genre Musical : [[${artist.genre}]] </div>
+          </td>
+          <br>
+<!--          <td>-->
+<!--            <img th:if="${appareil.photo}" th:src="@{/image/{toto}(toto=${appareil.photo.id})}" height="100" width="100" />-->
+<!--          </td>-->
+<!--          -->
+<!--          <td>-->
+<!--            <a th:href="'/appareils/'+${appareil.id}" class="btn btn-primary">Détail</a>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <form th:action="'/appareils/'+${appareil.id}" th:method="delete">-->
+<!--              <button type="submit" class="btn btn-danger"  >Supprimer</button>-->
+<!--            </form>-->
+<!--          </td>-->
+
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
